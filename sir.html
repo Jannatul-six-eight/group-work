@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .crd{
+            position: relative;
+            top: 50%;
+            width: 150px;
+            height: 250px;
+            border: 2px solid black;
+            margin-right: 20px;
+        }
+        .order{
+            width: 400px;
+            height: auto;
+            border: 2px solid black;
+            visibility: hidden;
+            padding: 10px;
+        }
+        #cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+        #cart-items li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+   
+<div style="display: flex;">
+    <div class="crd" onclick="addToCart(50, 'red')">
+        <img src="logo.jpeg" width="150px" height="150px">
+        <div id="pr1">
+            <p>Price: 50</p>
+            <p>Color: Red</p>
+        </div>
+        <button>Add to Cart</button>
+    </div>
+    <div class="crd" onclick="addToCart(60, 'blue')">
+        <img src="jckt.jpg" width="150px" height="150px">
+        <div id="pr2">
+            <p>Price: 60</p>
+            <p>Color: Blue</p>
+        </div>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="crd" onclick="addToCart(70, 'green')">
+        <img src="nature.jpg" width="150px" height="150px">
+        <div id="pr2">
+            <p>Price: 70</p>
+            <p>Color: Green</p>
+        </div>
+        <button>Add to Cart</button>
+    </div>
+
+    <div class="crd" onclick="addToCart(80, 'orange')">
+        <img src="logo.jpeg" width="150px" height="150px">
+        <div id="pr2">
+            <p>Price: 80</p>
+            <p>Color: orange</p>
+        </div>
+        <button>Add to Cart</button>
+    </div>
+    <div class="crd" onclick="addToCart(90, 'black')">
+        <img src="fan.jpeg" width="150px" height="150px">
+        <div id="pr2">
+            <p>Price: 90</p>
+            <p>Color: black</p>
+        </div>
+        <button>Add to Cart</button>
+    </div>
+</div>
+<br>
+<div class="order">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="total"></p>
+</div>
+
+<script>
+    var cart = [];
+    function addToCart(price, color) {
+        var product = { price: price, color: color };
+        cart.push(product);
+        updateCart();
+    }
+
+    function updateCart() {
+        var cartItems = document.getElementById("cart-items");
+        cartItems.innerHTML = "";
+        var totalPrice = 0;
+        cart.forEach(function(product, index) {
+            var listItem = document.createElement("li");
+            listItem.innerHTML = "Product " + (index + 1) + ": Price: " + product.price + ", Color: " + product.color;
+            cartItems.appendChild(listItem);
+            totalPrice += product.price;
+        });
+        document.getElementById("total").innerHTML = "Total: " + totalPrice;
+        document.querySelector('.order').style.visibility = 'visible';
+    }
+</script>
+
+</body>
+</html>
